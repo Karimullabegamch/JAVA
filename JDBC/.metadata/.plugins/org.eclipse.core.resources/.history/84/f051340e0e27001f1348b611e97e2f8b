@@ -1,0 +1,33 @@
+package Prepate_stmnt;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.util.Scanner;
+
+public class Prepare_Stmnt {
+
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		try
+		{
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			
+			Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","BATCH9M","ORACLE");
+			
+			PreparedStatement ps1=con.prepareStatement("insert into emp1 values(?,?)")	;
+			PreparedStatement ps2=con.prepareStatement("select * from emp1");
+			PreparedStatement ps3=con.prepareStatement("select * from emp1 where NUM=?");
+			PreparedStatement ps4=con.prepareStatement("DELETE FROM EMP1 WHERE NUM=?");
+			while(true)
+			{
+				System.out.println(" **********select the choice **********");
+				System.out.println("1.Add product\n 2.select\n 3.see by num \n 4.delete row");
+			}
+		}
+		catch(Exception e)
+		{
+			System.out.println(e.getMessage());
+		}
+	}
+}
